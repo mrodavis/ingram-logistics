@@ -46,6 +46,17 @@
       padding:10px 24px!important;border-radius:3px;transition:background .2s!important;
     }
     .nav-cta:hover{background:var(--red-dk)!important}
+    .nav-burger{
+      display:none;flex-direction:column;justify-content:center;gap:5px;
+      background:none;border:none;cursor:pointer;padding:8px;z-index:210;
+    }
+    .nav-burger span{
+      display:block;width:24px;height:2px;background:var(--white);
+      border-radius:2px;transition:transform .3s,opacity .3s;
+    }
+    nav.open .nav-burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    nav.open .nav-burger span:nth-child(2){opacity:0}
+    nav.open .nav-burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
     /* ── HERO ── */
     .hero{
@@ -534,8 +545,19 @@
       .why-right{display:none}
     }
     @media(max-width:768px){
-      nav{padding:0 20px}
-      .nav-links{display:none}
+      nav{padding:0 20px;flex-wrap:wrap;height:auto;min-height:72px;align-items:center}
+      .nav-burger{display:flex}
+      .nav-links{
+        display:none;flex-direction:column;gap:0;
+        width:100%;background:var(--navy-dk);
+        padding:0;margin:0;list-style:none;
+        border-top:1px solid rgba(201,169,76,.2);
+      }
+      nav.open .nav-links{display:flex}
+      .nav-links li{border-bottom:1px solid rgba(255,255,255,.06)}
+      .nav-links li a{display:block;padding:16px 20px;font-size:14px}
+      .nav-links li:last-child{padding:16px 20px}
+      .nav-links .nav-cta{display:block;text-align:center;margin:0;border-radius:0}
       .hero-inner{grid-template-columns:1fr;padding:110px 20px 60px;gap:40px}
       .hero-right{display:none}
       .stats-inner{grid-template-columns:repeat(2,1fr)}
@@ -559,6 +581,9 @@
     <img src="Ingram_Badge_-_Client_file.png" alt="Ingram Logistics badge" style="height:54px;object-fit:contain">
     <img src="ingram-wordmark.png" alt="Ingram Logistics" style="height:38px;object-fit:contain">
   </a>
+  <button class="nav-burger" aria-label="Toggle menu" onclick="this.closest('nav').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#why">Why Us</a></li>
@@ -902,6 +927,13 @@
   document.querySelectorAll('.rv').forEach((el, i) => {
     el.style.transitionDelay = (i % 4) * 0.1 + 's';
     obs.observe(el);
+  });
+</script>
+<script>
+  document.querySelectorAll('.nav-links a').forEach(function(a){
+    a.addEventListener('click',function(){
+      document.getElementById('top').classList.remove('open');
+    });
   });
 </script>
 </body>
