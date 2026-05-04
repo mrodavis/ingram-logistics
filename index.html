@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ingram Logistics | NY · NJ · CT · PA & Beyond | www.ingram-logistics.com</title>
+  <link rel="icon" type="image/png" href="Ingram_Badge_-_Client_file.png">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy:      #1a2744;
+      --navy-dk:   #0f1828;
+      --navy-mid:  #1e305e;
+      --red:       #bf2b2b;
+      --red-dk:    #9a1f1f;
+      --gold:      #c9a94c;
+      --gold-lt:   #dfbe6a;
+      --white:     #ffffff;
+      --off:       #f4f5f7;
+      --silver:    #adb8cc;
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Barlow',sans-serif;background:var(--white);color:var(--navy-dk);overflow-x:hidden}
+
+    /* ── NAV ── */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:200;
+      height:72px;display:flex;align-items:center;justify-content:space-between;
+      padding:0 48px;
+      background:rgba(15,24,40,.97);
+      backdrop-filter:blur(14px);
+      border-bottom:3px solid var(--red);
+    }
+    .nav-logo img{height:54px;object-fit:contain;display:block}
+    .nav-links{display:flex;gap:32px;list-style:none}
+    .nav-links a{
+      color:var(--silver);text-decoration:none;
+      font-family:'Barlow Condensed',sans-serif;
+      font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;
+      transition:color .2s;
+    }
+    .nav-links a:hover{color:var(--gold)}
+    .nav-cta{
+      background:var(--red)!important;color:var(--white)!important;
+      padding:10px 24px!important;border-radius:3px;transition:background .2s!important;
+    }
+    .nav-cta:hover{background:var(--red-dk)!important}
+
+    /* ── HERO ── */
+    .hero{
+      min-height:100vh;position:relative;overflow:hidden;
+      display:flex;align-items:center;
+      background:var(--navy-dk);
+    }
+    .hero-bg{
+      position:absolute;inset:0;
+      background:linear-gradient(130deg,#090f1c 0%,#1a2744 50%,#280d0d 100%);
+    }
+    .hero-bg::before{
+      content:'';position:absolute;inset:0;
+      background:repeating-linear-gradient(
+        -52deg,transparent 0,transparent 50px,
+        rgba(255,255,255,.013) 50px,rgba(255,255,255,.013) 51px
+      );
+    }
+    .hero-bg::after{
+      content:'';position:absolute;right:0;top:0;bottom:0;width:60%;
+      background:radial-gradient(ellipse 80% 80% at 90% 50%,rgba(191,43,43,.2) 0%,transparent 65%);
+    }
+    .hero-fade{
+      position:absolute;bottom:0;left:0;right:0;height:120px;
+      background:linear-gradient(to bottom,transparent,var(--white));
+      z-index:2;
+    }
+    .hero-inner{
+      position:relative;z-index:3;
+      max-width:1240px;margin:0 auto;
+      padding:130px 48px 80px;
+      display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+    }
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      background:rgba(191,43,43,.18);border:1px solid rgba(191,43,43,.4);
+      color:#e87070;font-family:'Barlow Condensed',sans-serif;
+      font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+      padding:6px 16px;border-radius:20px;margin-bottom:22px;
+    }
+    .hero-text h1{
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:clamp(46px,6.5vw,82px);font-weight:900;text-transform:uppercase;
+      color:var(--white);line-height:.94;letter-spacing:-2px;margin-bottom:28px;
+    }
+    .hero-text h1 .red{color:var(--red);display:block}
+    .hero-text h1 .gold{color:var(--gold)}
+    .hero-text > p{
+      font-size:17px;line-height:1.75;font-weight:300;
+      color:var(--silver);max-width:420px;margin-bottom:36px;
+    }
+    .svc-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px}
+    .svc-tag{
+      background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);
+      color:rgba(255,255,255,.82);
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+      padding:6px 14px;border-radius:2px;
+    }
+    .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+    .btn-red{
+      display:inline-block;background:var(--red);color:var(--white);
+      font-family:'Barlow Condensed',sans-serif;font-weight:700;
+      font-size:14px;letter-spacing:2px;text-transform:uppercase;
+      padding:15px 36px;text-decoration:none;border-radius:3px;
+      transition:background .2s,transform .2s;
+    }
+    .btn-red:hover{background:var(--red-dk);transform:translateY(-2px)}
+    .btn-ghost{
+      display:inline-block;border:1.5px solid rgba(173,184,204,.4);color:var(--silver);
+      font-family:'Barlow Condensed',sans-serif;font-weight:700;
+      font-size:14px;letter-spacing:2px;text-transform:uppercase;
+      padding:15px 36px;text-decoration:none;border-radius:3px;
+      transition:border-color .2s,color .2s;
+    }
+    .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+
+    .hero-right{position:relative}
+    .hero-img-wrap{border-radius:6px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.55)}
+    .hero-img-wrap img{width:100%;height:500px;object-fit:cover;display:block}
+    .hero-img-wrap::after{
+      content:'';position:absolute;top:0;left:0;bottom:0;width:5px;background:var(--red);
+    }
+    .contact-strip{
+      position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);
+      white-space:nowrap;
+      background:var(--navy);border:1px solid rgba(201,169,76,.3);
+      padding:14px 24px;border-radius:4px;
+      box-shadow:0 16px 48px rgba(0,0,0,.4);
+      display:flex;align-items:center;gap:18px;
+    }
+    .ci{display:flex;align-items:center;gap:8px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700}
+    .ci a{color:var(--gold);text-decoration:none}
+    .sep{color:rgba(255,255,255,.2);font-size:20px}
+
+    /* ── STATS ── */
+    .stats{background:var(--navy);padding:56px 48px;border-top:3px solid var(--red)}
+    .stats-inner{
+      max-width:1200px;margin:0 auto;
+      display:grid;grid-template-columns:repeat(4,1fr);
+    }
+    .stat{text-align:center;position:relative}
+    .stat+.stat::before{
+      content:'';position:absolute;left:0;top:15%;bottom:15%;
+      width:1px;background:rgba(255,255,255,.1);
+    }
+    .stat-n{
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:52px;font-weight:900;color:var(--gold);line-height:1;
+    }
+    .stat-l{
+      font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;
+      color:var(--silver);margin-top:6px;
+    }
+
+    /* ── SHARED ── */
+    .eyebrow{
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;
+      color:var(--red);margin-bottom:12px;
+      display:flex;align-items:center;gap:10px;
+    }
+    .eyebrow::before{content:'';display:inline-block;width:28px;height:2px;background:var(--red)}
+    .eyebrow.gold-eye{color:var(--gold)}
+    .eyebrow.gold-eye::before{background:var(--gold)}
+    .sec-title{
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:clamp(32px,5vw,56px);font-weight:900;
+      text-transform:uppercase;letter-spacing:-.5px;line-height:1;
+    }
+
+    /* ── SERVICES ── */
+    .services{padding:100px 48px;background:var(--off)}
+    .svc-head{
+      max-width:1200px;margin:0 auto 56px;
+      display:flex;justify-content:space-between;align-items:flex-end;gap:24px;
+    }
+    .svc-head .sec-title{color:var(--navy-dk)}
+    .svc-head p{max-width:360px;font-size:15px;line-height:1.7;color:#556;font-weight:300}
+    .svc-grid{
+      max-width:1200px;margin:0 auto;
+      display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
+    }
+    .svc-card{
+      background:var(--white);border-radius:4px;overflow:hidden;
+      box-shadow:0 4px 20px rgba(26,39,68,.07);
+      display:flex;flex-direction:column;
+      transition:transform .3s,box-shadow .3s;
+    }
+    .svc-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(26,39,68,.14)}
+    .svc-img{height:200px;position:relative;overflow:hidden}
+    .svc-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s;display:block}
+    .svc-card:hover .svc-img img{transform:scale(1.07)}
+    .svc-badge{
+      position:absolute;top:14px;left:14px;
+      background:var(--red);color:var(--white);
+      width:42px;height:42px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;font-size:18px;
+      box-shadow:0 4px 12px rgba(191,43,43,.5);
+    }
+    .svc-body{padding:24px;flex:1;display:flex;flex-direction:column}
+    .svc-body h3{
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:21px;font-weight:800;text-transform:uppercase;
+      color:var(--navy-dk);margin-bottom:10px;
+    }
+    .svc-body p{font-size:14px;line-height:1.7;color:#556;font-weight:300;flex:1;margin-bottom:20px}
+    .svc-lnk{
+      display:inline-block;font-family:'Barlow Condensed',sans-serif;
+      font-weight:700;font-size:12px;letter-spacing:2px;text-transform:uppercase;
+      color:var(--red);text-decoration:none;
+      border-bottom:1.5px solid var(--red);padding-bottom:2px;
+      align-self:flex-start;transition:color .2s,border-color .2s;
+    }
+    .svc-lnk:hover{color:var(--navy);border-color:var(--navy)}
+
+    /* ── WHY ── */
+    .why{padding:100px 48px;background:var(--navy-dk);position:relative;overflow:hidden}
+    .why::before{
+      content:'';position:absolute;inset:0;
+      background:repeating-linear-gradient(
+        -55deg,transparent 0,transparent 60px,
+        rgba(191,43,43,.035) 60px,rgba(191,43,43,.035) 61px
+      );
+    }
+    .why-inner{
+      max-width:1200px;margin:0 auto;position:relative;
+      display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+    }
+    .why-left .sec-title{color:var(--white);margin-bottom:18px}
+    .why-left > p{font-size:16px;line-height:1.8;color:var(--silver);font-weight:300;margin-bottom:40px;max-width:440px}
+    .pillars{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+    .pillar{
+      background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);
+      padding:28px 24px;transition:background .25s;
+    }
+    .pillar:hover{background:rgba(255,255,255,.08)}
+    .pillar-ico{font-size:26px;margin-bottom:12px;display:block}
+    .pillar h4{
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:18px;font-weight:800;text-transform:uppercase;
+      color:var(--white);margin-bottom:8px;
+    }
+    .pillar p{font-size:13px;line-height:1.65;color:var(--silver);font-weight:300}
+    .why-right{position:relative;border-radius:6px;overflow:hidden}
+    .why-right img{width:100%;height:460px;object-fit:cover;display:block}
+    .why-right::after{
+      content:'';position:absolute;inset:0;
+      background:linear-gradient(to bottom,transparent 50%,rgba(15,24,40,.65) 100%);
+    }
+    .why-badge{
+      position:absolute;bottom:24px;left:24px;z-index:2;
+      background:var(--navy);border:1px solid rgba(201,169,76,.35);
+      padding:16px 20px;border-radius:4px;
+    }
+    .why-badge .nb{
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:15px;font-weight:900;color:var(--gold);line-height:1.3;
+    }
+    .why-badge .nl{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--silver)}
+
+    /* ── PRICING ── */
+    .pricing{padding:100px 48px;background:var(--off)}
+    .pricing-hd{max-width:1200px;margin:0 auto 56px;text-align:center}
+    .pricing-hd .sec-title{color:var(--navy-dk);margin-bottom:14px}
+    .pricing-hd p{font-size:16px;color:#556;font-weight:300}
+    .tabs{max-width:1200px;margin:0 auto 40px;display:flex;gap:8px;justify-content:center}
+    .tab{
+      font-family:'Barlow Condensed',sans-serif;font-weight:700;
+      font-size:13px;letter-spacing:2px;text-transform:uppercase;
+      padding:10px 28px;border-radius:3px;cursor:pointer;
+      border:2px solid transparent;background:var(--white);color:#778;
+      transition:all .2s;
+    }
+    .tab.on,.tab:hover{background:var(--red);color:var(--white);border-color:var(--red)}
+    .panel{display:none}.panel.on{display:block}
+
+    .junk-grid{
+      max-width:1200px;margin:0 auto;
+      display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
+    }
+    .pc{
+      background:var(--white);border-radius:6px;overflow:hidden;
+      box-shadow:0 4px 20px rgba(26,39,68,.08);
+      text-align:center;transition:transform .25s,box-shadow .25s;
+    }
+    .pc:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(26,39,68,.14)}
+    .pc.feat{border:2px solid var(--red)}
+    .feat-lbl{
+      background:var(--red);color:var(--white);
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+      padding:5px 0;text-align:center;
+    }
+    .pc-top{padding:28px 20px 20px;border-bottom:1px solid #eee}
+    .truck-ico{font-size:36px;margin-bottom:12px;display:block}
+    .pc-top h3{
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:22px;font-weight:900;text-transform:uppercase;color:var(--navy-dk);margin-bottom:6px;
+    }
+    .pc-desc{font-size:13px;color:#778}
+    .pc-bot{padding:22px}
+    .price-big{
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:52px;font-weight:900;color:var(--red);line-height:1;
+    }
+    .price-big sup{font-size:24px;vertical-align:top;margin-top:8px}
+
+    .pack-grid{
+      max-width:1000px;margin:0 auto;
+      display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+    }
+    .pk{background:var(--navy);border-radius:6px;overflow:hidden;box-shadow:0 4px 24px rgba(15,24,40,.2)}
+    .pk-hd{background:var(--navy-mid);padding:22px 24px;text-align:center}
+    .pk-hd h3{
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:22px;font-weight:900;text-transform:uppercase;color:var(--white);letter-spacing:1px;
+    }
+    .pk-rate{font-size:13px;color:var(--gold);font-weight:500;margin-top:4px}
+    .pk-rows{padding:8px 0}
+    .pk-row{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:13px 24px;border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .pk-row:last-child{border-bottom:none}
+    .pk-workers{font-size:20px}
+    .pk-price{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:var(--gold)}
+    .sur-row{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:13px 24px;border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .sur-row:last-child{border-bottom:none}
+    .sur-l{font-size:14px;color:var(--silver);font-weight:300}
+    .sur-p{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:var(--gold)}
+
+    /* ── GALLERY ── */
+    .gallery{padding:100px 48px;background:var(--white)}
+    .gallery-inner{max-width:1200px;margin:0 auto}
+    .gallery-hd{margin-bottom:48px}
+    .gallery-hd .sec-title{color:var(--navy-dk)}
+    .gal-grid{
+      display:grid;
+      grid-template-columns:2fr 1fr 1fr;
+      grid-template-rows:240px 240px;
+      gap:14px;
+    }
+    .gi{border-radius:4px;overflow:hidden;position:relative}
+    .gi img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+    .gi:hover img{transform:scale(1.04)}
+    .gi.span2{grid-row:span 2}
+    .gi.span2 img{height:100%}
+
+    /* ── REVIEWS ── */
+    .reviews{padding:100px 48px;background:var(--off)}
+    .rev-hd{max-width:1200px;margin:0 auto 48px}
+    .rev-hd .sec-title{color:var(--navy-dk)}
+    .gbar{display:flex;align-items:center;gap:14px;margin-top:18px}
+    .stars-big{color:#f59e0b;font-size:22px;letter-spacing:2px}
+    .gbar-info{font-size:14px;color:#556}
+    .gbar-info strong{color:var(--navy-dk)}
+    .rev-grid{
+      max-width:1200px;margin:0 auto;
+      display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+    }
+    .rc{
+      background:var(--white);border-radius:4px;padding:28px;
+      border-top:3px solid var(--red);
+      box-shadow:0 4px 16px rgba(26,39,68,.06);
+      transition:transform .2s,box-shadow .2s;
+    }
+    .rc:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(26,39,68,.1)}
+    .rc-stars{color:#f59e0b;font-size:14px;margin-bottom:14px}
+    .rc-text{
+      font-size:14px;line-height:1.75;color:#445;font-weight:300;margin-bottom:20px;
+      display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden;
+    }
+    .rc-author{display:flex;align-items:center;gap:12px}
+    .rc-av{
+      width:40px;height:40px;border-radius:50%;background:var(--navy);flex-shrink:0;
+      display:flex;align-items:center;justify-content:center;
+      font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;color:var(--gold);
+    }
+    .rc-name{font-size:14px;font-weight:600;color:var(--navy-dk)}
+    .rc-time{font-size:12px;color:#889}
+
+    /* ── CTA ── */
+    .cta{
+      position:relative;overflow:hidden;background:var(--red);
+      padding:80px 48px;text-align:center;
+    }
+    .cta::before{
+      content:'';position:absolute;inset:0;
+      background:repeating-linear-gradient(
+        -45deg,transparent 0,transparent 40px,
+        rgba(0,0,0,.06) 40px,rgba(0,0,0,.06) 41px
+      );
+    }
+    .cta h2{
+      position:relative;
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:clamp(38px,6vw,70px);font-weight:900;text-transform:uppercase;
+      color:var(--white);letter-spacing:-1px;line-height:1;margin-bottom:18px;
+    }
+    .cta h2 span{color:var(--gold)}
+    .cta p{
+      position:relative;font-size:17px;color:rgba(255,255,255,.85);
+      font-weight:300;max-width:480px;margin:0 auto 36px;line-height:1.7;
+    }
+    .cta-btns{position:relative;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+    .btn-white{
+      display:inline-block;background:var(--white);color:var(--red);
+      font-family:'Barlow Condensed',sans-serif;font-weight:700;
+      font-size:14px;letter-spacing:2px;text-transform:uppercase;
+      padding:15px 40px;text-decoration:none;border-radius:3px;transition:background .2s;
+    }
+    .btn-white:hover{background:var(--off)}
+    .btn-navy{
+      display:inline-block;background:var(--navy);color:var(--white);
+      font-family:'Barlow Condensed',sans-serif;font-weight:700;
+      font-size:14px;letter-spacing:2px;text-transform:uppercase;
+      padding:15px 40px;text-decoration:none;border-radius:3px;transition:background .2s;
+    }
+    .btn-navy:hover{background:var(--navy-mid)}
+
+    /* ── FOOTER ── */
+    footer{
+      background:var(--navy-dk);padding:64px 48px 32px;
+      border-top:3px solid var(--red);
+    }
+    .ft-grid{
+      max-width:1200px;margin:0 auto;
+      display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;
+    }
+    .ft-brand img{height:60px;object-fit:contain;display:block;margin-bottom:14px}
+    .ft-brand p{font-size:14px;color:var(--silver);font-weight:300;line-height:1.7;margin-bottom:20px}
+    .ft-clist{list-style:none}
+    .ft-clist li{margin-bottom:10px}
+    .ft-clist a{
+      display:flex;align-items:center;gap:8px;
+      color:var(--silver);text-decoration:none;font-size:14px;font-weight:300;
+      transition:color .2s;
+    }
+    .ft-clist a:hover{color:var(--gold)}
+    .ft-col h4{
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:13px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
+      color:var(--gold);margin-bottom:18px;
+    }
+    .ft-col ul{list-style:none}
+    .ft-col ul li{margin-bottom:10px}
+    .ft-col ul li a{color:var(--silver);text-decoration:none;font-size:14px;font-weight:300;transition:color .2s}
+    .ft-col ul li a:hover{color:var(--white)}
+    .ft-bot{
+      max-width:1200px;margin:0 auto;padding-top:24px;
+      border-top:1px solid rgba(255,255,255,.07);
+      display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+    }
+    .ft-bot p{font-size:12px;color:#556}
+    .ft-bot a{color:var(--gold);text-decoration:none}
+
+    /* ── REVIEWS LAUNCH ── */
+    .reviews{padding:100px 48px;background:var(--off)}
+    .rev-hd{max-width:1200px;margin:0 auto 56px}
+    .rev-hd .sec-title{color:var(--navy-dk);margin-top:12px}
+    .reviews-cta-wrap{
+      max-width:1200px;margin:0 auto;
+      display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;
+    }
+    .reviews-launch-card{
+      background:var(--navy);border-radius:6px;padding:48px 40px;
+      text-align:center;border-top:4px solid var(--gold);
+    }
+    .rlc-icon{font-size:52px;margin-bottom:20px}
+    .reviews-launch-card h3{
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:26px;font-weight:900;text-transform:uppercase;
+      color:var(--white);margin-bottom:16px;line-height:1.15;
+    }
+    .reviews-launch-card p{
+      font-size:15px;line-height:1.75;color:var(--silver);
+      font-weight:300;margin-bottom:32px;
+    }
+    .rlc-platforms{display:flex;flex-direction:column;gap:12px}
+    .rlc-btn{
+      display:flex;align-items:center;justify-content:center;gap:12px;
+      font-family:'Barlow Condensed',sans-serif;font-weight:700;
+      font-size:14px;letter-spacing:2px;text-transform:uppercase;
+      padding:14px 24px;border-radius:3px;text-decoration:none;
+      transition:opacity .2s,transform .2s;
+    }
+    .rlc-btn:hover{opacity:.88;transform:translateY(-2px)}
+    .rlc-btn.google{background:#fff;color:#222}
+    .rlc-btn.facebook{background:#1877f2;color:#fff}
+    .rlc-btn-icon{
+      font-family:Georgia,serif;font-size:18px;font-weight:700;
+      line-height:1;
+    }
+    .reviews-promise{display:flex;flex-direction:column;gap:24px}
+    .rp-item{
+      display:flex;align-items:flex-start;gap:18px;
+      background:var(--white);padding:24px;border-radius:4px;
+      border-left:4px solid var(--red);
+      box-shadow:0 4px 16px rgba(26,39,68,.07);
+    }
+    .rp-ico{font-size:28px;flex-shrink:0;margin-top:2px}
+    .rp-item strong{
+      display:block;font-family:'Barlow Condensed',sans-serif;
+      font-size:18px;font-weight:800;text-transform:uppercase;
+      color:var(--navy-dk);margin-bottom:6px;
+    }
+    .rp-item p{font-size:14px;line-height:1.65;color:#556;font-weight:300}
+    .rp-item a{color:var(--red);text-decoration:none;font-weight:500}
+    @media(max-width:900px){
+      .reviews-cta-wrap{grid-template-columns:1fr}
+    }
+
+    /* ── REVEAL ── */
+    .rv{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+    .rv.in{opacity:1;transform:translateY(0)}
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:1024px){
+      .svc-grid{grid-template-columns:repeat(2,1fr)}
+      .junk-grid{grid-template-columns:repeat(2,1fr)}
+      .why-inner{grid-template-columns:1fr}
+      .why-right{display:none}
+    }
+    @media(max-width:768px){
+      nav{padding:0 20px}
+      .nav-links{display:none}
+      .hero-inner{grid-template-columns:1fr;padding:110px 20px 60px;gap:40px}
+      .hero-right{display:none}
+      .stats-inner{grid-template-columns:repeat(2,1fr)}
+      .services,.why,.pricing,.gallery,.reviews,.cta,footer{padding:70px 20px}
+      .svc-grid,.junk-grid{grid-template-columns:1fr}
+      .pack-grid{grid-template-columns:1fr}
+      .gal-grid{grid-template-columns:1fr;grid-template-rows:auto}
+      .gi.span2{grid-row:span 1}
+      .rev-grid{grid-template-columns:1fr}
+      .ft-grid{grid-template-columns:1fr 1fr}
+      .ft-bot{flex-direction:column;text-align:center}
+      .svc-head{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="top">
+  <a href="#top"><img src="Ingram_Badge_-_Client_file.png" alt="Ingram Logistics" style="height:54px;object-fit:contain"></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-fade"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="pill">📍 Nesconset, NY · NY · NJ · CT · PA &amp; Beyond</div>
+      <h1>We Move.<br><span class="red">We Haul.</span><br><span class="gold">We Deliver.</span></h1>
+      <p>Ingram Logistics is your trusted partner for local moving, furniture delivery, junk removal, and commercial cleanouts — serving NY, NJ, CT, PA and beyond with speed, care, and professionalism. Proudly founded in 2024.</p>
+      <div class="svc-tags">
+        <span class="svc-tag">🚚 Local Moving</span>
+        <span class="svc-tag">🛋️ Furniture Delivery</span>
+        <span class="svc-tag">🗑️ Junk Removal</span>
+        <span class="svc-tag">🏢 Cleanouts</span>
+      </div>
+      <div class="hero-actions">
+        <a href="tel:9294425716" class="btn-red">📞 929-442-5716</a>
+        <a href="#pricing" class="btn-ghost">View Pricing</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-img-wrap">
+        <img src="team-crew.jpg" alt="Ingram Logistics team and truck">
+      </div>
+      <div class="contact-strip">
+        <div class="ci">📧 <a href="mailto:ingramlogisticsllc@gmail.com">ingramlogisticsllc@gmail.com</a></div>
+        <span class="sep">|</span>
+        <div class="ci">🌐 <a href="https://www.ingram-logistics.com" target="_blank">www.ingram-logistics.com</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stat rv"><div class="stat-n">2024</div><div class="stat-l">Founded</div></div>
+    <div class="stat rv"><div class="stat-n">4</div><div class="stat-l">Core Services</div></div>
+    <div class="stat rv"><div class="stat-n">4+</div><div class="stat-l">States Served</div></div>
+    <div class="stat rv"><div class="stat-n">100%</div><div class="stat-l">Licensed &amp; Insured</div></div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="svc-head">
+    <div>
+      <div class="eyebrow">What We Do</div>
+      <div class="sec-title">Our Services</div>
+    </div>
+    <p>From a single furniture delivery to a full commercial cleanout — Ingram Logistics handles it all across NY, NJ, CT, PA and beyond.</p>
+  </div>
+  <div class="svc-grid">
+
+    <div class="svc-card rv">
+      <div class="svc-img">
+        <img src="WhatsApp_Image_2025-10-03_at_1_25_49_PM.jpeg" alt="Local Moving">
+        <div class="svc-badge">🚚</div>
+      </div>
+      <div class="svc-body">
+        <h3>Local Moving</h3>
+        <p>Residential and commercial moves across NY, NJ, CT, PA and beyond. Our uniformed crew handles your belongings with care — on time, every time. No surprise fees.</p>
+        <a href="#contact" class="svc-lnk">Get a Quote →</a>
+      </div>
+    </div>
+
+    <div class="svc-card rv">
+      <div class="svc-img">
+        <img src="furniture-worker.jpg" alt="Furniture Delivery">
+        <div class="svc-badge">🛋️</div>
+      </div>
+      <div class="svc-body">
+        <h3>Furniture Delivery</h3>
+        <p>White-glove and standard furniture delivery, assembly, and placement across NY, NJ, CT, PA and beyond. We work with retailers, designers, and homeowners to get pieces exactly where they belong. </p>
+        <a href="#contact" class="svc-lnk">Get a Quote →</a>
+      </div>
+    </div>
+
+    <div class="svc-card rv">
+      <div class="svc-img">
+        <img src="WhatsApp_Image_2025-10-03_at_1_25_49_PM__2_.jpeg" alt="Junk Removal">
+        <div class="svc-badge">🗑️</div>
+      </div>
+      <div class="svc-body">
+        <h3>Junk Removal</h3>
+        <p>Same-day junk removal for homes and businesses across NY, NJ & CT. We load, lift, and haul away furniture, appliances, yard waste, and more — then donate or recycle what we can.</p>
+        <a href="#contact" class="svc-lnk">Get a Quote →</a>
+      </div>
+    </div>
+
+    <div class="svc-card rv">
+      <div class="svc-img">
+        <img src="team-crew.jpg" alt="Cleanouts" style="object-position:top">
+        <div class="svc-badge">🏢</div>
+      </div>
+      <div class="svc-body">
+        <h3>Cleanouts</h3>
+        <p>Estate cleanouts, office turnovers, storage units, foreclosure clearings across NY, NJ, CT, PA and beyond — we get it done fast with minimal disruption and maximum efficiency.</p>
+        <a href="#contact" class="svc-lnk">Get a Quote →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="why">
+  <div class="why-inner">
+    <div class="why-left">
+      <div class="eyebrow gold-eye">Why Ingram</div>
+      <div class="sec-title" style="color:var(--white)">Built on Trust<br>&amp; Reliability</div>
+      <p>We're not just another truck and crew. Ingram Logistics is a family-built operation founded in 2024 — committed to showing up, doing the work right, and treating your property like our own.</p>
+      <div class="pillars">
+        <div class="pillar rv"><span class="pillar-ico">🛠️</span><h4>Built to Last</h4><p>Founded in 2024 with a mission to raise the bar — fast, professional, and dependable on every single job.</p></div>
+        <div class="pillar rv"><span class="pillar-ico">✨</span><h4>Pro &amp; Courteous</h4><p>Uniformed, trained crew committed to 5-star service and protecting your property on every job.</p></div>
+        <div class="pillar rv"><span class="pillar-ico">🌿</span><h4>Eco-Responsible</h4><p>We donate, recycle, and responsibly dispose of items to keep landfill waste to a minimum.</p></div>
+        <div class="pillar rv"><span class="pillar-ico">💲</span><h4>Transparent Pricing</h4><p>Upfront rates, no hidden fees. Competitive packages with same-day availability.</p></div>
+      </div>
+    </div>
+    <div class="why-right rv">
+      <img src="1.png" alt="Ingram Logistics branding">
+      <div class="why-badge">
+        <div class="nb">USDOT 4223110</div>
+        <div class="nb">MC 1632638</div>
+        <div class="nl">Licensed &amp; Insured</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="pricing-hd">
+    <div class="eyebrow" style="justify-content:center">Simple &amp; Upfront</div>
+    <div class="sec-title">Our Pricing</div>
+    <p>No surprises. No hidden fees. Volume-based junk removal rates and hourly packing &amp; loading — pick what works for you.</p>
+  </div>
+  <div class="tabs">
+    <div class="tab on" onclick="showTab('junk',this)">Junk Removal</div>
+    <div class="tab" onclick="showTab('pack',this)">Packing &amp; Loading</div>
+  </div>
+
+  <div class="panel on" id="panel-junk">
+    <div class="junk-grid">
+      <div class="pc rv">
+        <div class="pc-top"><span class="truck-ico">🚛</span><h3>¼ Truck</h3><div class="pc-desc">¼ Load · up to 500 lbs</div></div>
+        <div class="pc-bot"><div class="price-big"><sup>$</sup>300</div></div>
+      </div>
+      <div class="pc rv">
+        <div class="pc-top"><span class="truck-ico">🚛</span><h3>½ Truck</h3><div class="pc-desc">½ Load · up to 1,000 lbs</div></div>
+        <div class="pc-bot"><div class="price-big"><sup>$</sup>600</div></div>
+      </div>
+      <div class="pc feat rv">
+        <div class="feat-lbl">Most Popular</div>
+        <div class="pc-top"><span class="truck-ico">🚛</span><h3>¾ Truck</h3><div class="pc-desc">¾ Load · up to 1,500 lbs</div></div>
+        <div class="pc-bot"><div class="price-big"><sup>$</sup>900</div></div>
+      </div>
+      <div class="pc rv">
+        <div class="pc-top"><span class="truck-ico">🚛</span><h3>Full Truck</h3><div class="pc-desc">Full Load · up to 2,000 lbs</div></div>
+        <div class="pc-bot"><div class="price-big"><sup>$</sup>1,200</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="panel-pack">
+    <div class="pack-grid">
+      <div class="pk rv">
+        <div class="pk-hd"><h3>Standard</h3><div class="pk-rate">$75 / hr per worker</div></div>
+        <div class="pk-rows">
+          <div class="pk-row"><span class="pk-workers">👷</span><span class="pk-price">$75/hr</span></div>
+          <div class="pk-row"><span class="pk-workers">👷👷</span><span class="pk-price">$150/hr</span></div>
+          <div class="pk-row"><span class="pk-workers">👷👷👷</span><span class="pk-price">$225/hr</span></div>
+          <div class="pk-row"><span class="pk-workers">👷👷👷👷</span><span class="pk-price">$300/hr</span></div>
+        </div>
+      </div>
+      <div class="pk rv">
+        <div class="pk-hd"><h3>White Glove</h3><div class="pk-rate">$125 / hr per worker</div></div>
+        <div class="pk-rows">
+          <div class="pk-row"><span class="pk-workers">👷</span><span class="pk-price">$125/hr</span></div>
+          <div class="pk-row"><span class="pk-workers">👷👷</span><span class="pk-price">$250/hr</span></div>
+          <div class="pk-row"><span class="pk-workers">👷👷👷</span><span class="pk-price">$375/hr</span></div>
+          <div class="pk-row"><span class="pk-workers">👷👷👷👷</span><span class="pk-price">$500/hr</span></div>
+        </div>
+      </div>
+      <div class="pk rv">
+        <div class="pk-hd"><h3>Surcharges</h3><div class="pk-rate">Applied as needed</div></div>
+        <div class="pk-rows">
+          <div class="sur-row"><span class="sur-l">NYC Rate</span><span class="sur-p">$150</span></div>
+          <div class="sur-row"><span class="sur-l">Materials</span><span class="sur-p">$150</span></div>
+          <div class="sur-row"><span class="sur-l">COI</span><span class="sur-p">$150</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="fleet">
+  <div class="gallery-inner">
+    <div class="gallery-hd">
+      <div class="eyebrow">The Fleet &amp; Team</div>
+      <div class="sec-title">Ingram in Action</div>
+    </div>
+    <div class="gal-grid">
+      <div class="gi span2 rv"><img src="team-crew.jpg" alt="Ingram Logistics crew and truck"></div>
+      <div class="gi rv"><img src="furniture-worker.jpg" alt="Ingram worker handling furniture"></div>
+      <div class="gi rv"><img src="WhatsApp_Image_2025-10-03_at_1_25_49_PM__2_.jpeg" alt="Ingram truck closeup"></div>
+      <div class="gi rv"><img src="WhatsApp_Image_2025-10-03_at_1_25_49_PM.jpeg" alt="Ingram truck"></div>
+      <div class="gi rv"><img src="1.png" alt="Ingram brand" style="background:var(--navy)"></div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="rev-hd">
+    <div class="eyebrow">Client Reviews</div>
+    <div class="sec-title">Work With Us &amp;<br>Spread the Word</div>
+  </div>
+  <div class="reviews-cta-wrap rv">
+    <div class="reviews-launch-card">
+      <div class="rlc-icon">⭐</div>
+      <h3>We Launched in 2024 — Be One of Our First Reviewers</h3>
+      <p>Ingram Logistics is a fresh operation built on a simple promise: show up, do the job right, and treat your property with care. If we've served you, we'd love to hear about your experience.</p>
+      <div class="rlc-platforms">
+        <a href="https://g.page/r/ingram-logistics" target="_blank" class="rlc-btn google">
+          <span class="rlc-btn-icon">G</span> Review us on Google
+        </a>
+        <a href="https://www.facebook.com/ingramlogistics" target="_blank" class="rlc-btn facebook">
+          <span class="rlc-btn-icon">f</span> Review us on Facebook
+        </a>
+      </div>
+    </div>
+    <div class="reviews-promise">
+      <div class="rp-item rv">
+        <span class="rp-ico">🤝</span>
+        <div>
+          <strong>Honest &amp; Transparent</strong>
+          <p>We launched in 2024 and are building our reputation one satisfied customer at a time.</p>
+        </div>
+      </div>
+      <div class="rp-item rv">
+        <span class="rp-ico">📞</span>
+        <div>
+          <strong>Speak Directly With Us</strong>
+          <p>Questions before booking? Call or text us at <a href="tel:9294425716">929-442-5716</a> — real people, real answers.</p>
+        </div>
+      </div>
+      <div class="rp-item rv">
+        <span class="rp-ico">✅</span>
+        <div>
+          <strong>Licensed &amp; Insured</strong>
+          <p>USDOT 4223110 · MC 1632638. Fully credentialed so your property is always protected.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+  <h2>Ready to <span>Clear It Out?</span></h2>
+  <p>Same-day availability. Licensed &amp; insured. Serving NY, NJ, CT, PA and beyond — call or email us to get started today.</p>
+  <div class="cta-btns">
+    <a href="tel:9294425716" class="btn-white">📞 929-442-5716</a>
+    <a href="mailto:ingramlogisticsllc@gmail.com" class="btn-navy">✉️ Email Us</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-grid">
+    <div class="ft-brand">
+      <img src="ingram-wordmark.svg" alt="Ingram Logistics" style="height:auto;width:220px;margin-bottom:14px">
+      <p>Trusted junk removal, moving, and delivery services across NY, NJ, CT, PA and beyond — fast, eco-conscious, and professionally handled.</p>
+      <ul class="ft-clist">
+        <li><a href="tel:9294425716">📞 929-442-5716</a></li>
+        <li><a href="mailto:ingramlogisticsllc@gmail.com">📧 ingramlogisticsllc@gmail.com</a></li>
+        <li><a href="https://www.ingram-logistics.com" target="_blank">🌐 www.ingram-logistics.com</a></li>
+        <li><a href="#">📍 Nesconset, NY</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Local Moving</a></li>
+        <li><a href="#services">Furniture Delivery</a></li>
+        <li><a href="#services">Junk Removal</a></li>
+        <li><a href="#services">Cleanouts</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#why">About Us</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4>Service Area</h4>
+      <ul>
+        <li><a href="#">New York (NY)</a></li>
+        <li><a href="#">New Jersey (NJ)</a></li>
+        <li><a href="#">Connecticut (CT)</a></li>
+        <li><a href="#">Pennsylvania (PA)</a></li>
+        <li><a href="#">Further on Request</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <p>© 2026 Ingram Logistics LLC &nbsp;·&nbsp; USDOT 4223110 &nbsp;·&nbsp; MC 1632638 &nbsp;·&nbsp; <a href="https://www.ingram-logistics.com">www.ingram-logistics.com</a></p>
+    <p>Founded 2024 · Nesconset, NY</p>
+  </div>
+</footer>
+
+<script>
+  function showTab(id, el) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('on'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
+    document.getElementById('panel-' + id).classList.add('on');
+    el.classList.add('on');
+  }
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.rv').forEach((el, i) => {
+    el.style.transitionDelay = (i % 4) * 0.1 + 's';
+    obs.observe(el);
+  });
+</script>
+</body>
+</html>
